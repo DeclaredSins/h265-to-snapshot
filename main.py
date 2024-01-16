@@ -31,7 +31,7 @@ async def every(__seconds: float, func, *args):
         
 def startwebserver(port, image):    
     webServer = HTTPServer(('', port), httpserver(image))
-    print("Server started http://%s:%s" % ("test", "8080"))
+    print("Server started http://%s:%s" % ('', str(port)))
 
     try:
         webServer.serve_forever()
