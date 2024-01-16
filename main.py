@@ -42,18 +42,8 @@ def startwebserver(port, image):
     print("Server stopped.")
 
 if __name__ == '__main__':
-    for i in data["camera"]:
-        # check for .png
-        if ("output" in i["output"].lower() == False):
-            i["output"] = i["output"] + ".png"
-
-        new_thread = threading.Thread(target=startwebserver(i["port"], i["output"]))
-        new_thread.daemon = True
-        new_thread.start()
-        #a.create_task(startwebserver(i["port"], i["output"]))   
-
-    print(":tesrt")
     a = asyncio.get_event_loop()
+    a.create_task(startwebserver(i["port"], i["output"]))
     a.create_task(every(10, converttoimage)) # run every 10 seconds
     a.run_forever()
     print(":tefsrt")
