@@ -7,6 +7,9 @@ config = open("config.json")
 data = json.load(config)
 
 def converttoimage():
+    if not os.path.exists(os.getcwd()+"/images"):
+        os.makedirs(os.getcwd()+"/images")
+        
     for i in data["camera"]:
         outfile = os.getcwd() + "/images" + '/' + i["output"]
         print(outfile)
