@@ -1,28 +1,22 @@
-import os
 import asyncio
 import ffmpeg
 import json
+import os
 
 config = open("config.json")
 data = json.load(config)
 
 def converttoimage():
     for i in data["camera"]:
+        outfile = os.getcwd() + "/images" + '/' + i["output"]
+        print(outfile)
         {
             ffmpeg
             .input(i["url"]) 
-            .output(i["name"]+".png", vframes=1, ss=5) # ss convert from frame 50, syntax = frame number / fps
-            .run()
+            # ss convert from frame 50, syntax = frame number / fps
+            .output(outfile, vframes=1, ss=5)
+            .run(overwrite_output=True)
         }
-
-        filelist=os.listdir()
-        for files in filelist[:]: # filelist[:] makes a copy of filelist.
-            if (files == i["output"]): # find the old one first
-                os.remove(i["output"])
-                #os.rename(i["name"]+".png", i["output"])
-
-            if (files == i["name"]+".png"): # incase of creating new file
-                os.rename(i["name"]+".png", i["output"]) 
 
 async def every(__seconds: float, func, *args):
     while True:
