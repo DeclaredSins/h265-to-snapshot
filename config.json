@@ -1,0 +1,14 @@
+{
+    "camera": [
+        {
+            "name": "example1",
+            "url": "rtsp:/exampleip",
+            "output": "example1.png"
+        },
+        {
+            "name": "example2",
+            "url": "rtsp://exampleip/example",
+            "output": "example2.png"
+        }
+    ]
+  }
