@@ -12,5 +12,5 @@ sudo apt update
 sudo apt install git ffmpeg python3-pip
 git clone https://github.com/DeclaredSins/h265-to-snapshot.git
 cd h265-to-snapshot
-pip install requirements.txt
+pip install -r requirements.txt --break-system-packages
 python3 main.py
