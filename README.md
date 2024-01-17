@@ -14,3 +14,5 @@ git clone https://github.com/DeclaredSins/h265-to-snapshot.git
 cd h265-to-snapshot
 pip install -r requirements.txt --break-system-packages
 python3 main.py
+```
+The web server is now reachable via http://yourip:8080/example.png -- change example.png to whatever output you set in your config.
