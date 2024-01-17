@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler
-from main import data
+from re import search
 import os
 
 class httphandler(BaseHTTPRequestHandler):
@@ -11,13 +11,16 @@ class httphandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type", "image/png")
             self.end_headers()
-            for i in data["camera"]:
-                # check for .png
-                if ("output" in i["output"].lower() == False):
-                    i["output"] = i["output"] + ".png"
-                    f = open(os.getcwd() + '/images' + '/' + i["output"], 'rb')
-                    self.wfile.write(f.read())
-                    f.close()
+            path = self.path
+
+            # check for .png
+            if search(".png", path) == None:
+                path = path + ".png"
+
+            f = open(os.getcwd() + '/images' + path, 'rb')
+            self.wfile.write(f.read())
+            f.close()
+            print("Accessed from " + self.client_address + " to " + path)
         except:
             self.send_response(404)
             self.send_header('Content-type', 'text/html')

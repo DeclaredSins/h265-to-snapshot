@@ -15,7 +15,6 @@ def converttoimage():
 
     for i in data["camera"]:
         outfile = os.getcwd() + "/images" + '/' + i["output"]
-        print(outfile)
         {
             ffmpeg
             .input(i["url"]) 
@@ -29,9 +28,9 @@ async def every(__seconds: float, func, *args):
         func(*args)
         await asyncio.sleep(__seconds)
         
-def startwebserver(port, image):    
-    webServer = HTTPServer(('', port), httpserver(image))
-    print("Server started http://%s:%s" % ('', str(port)))
+def startwebserver():    
+    webServer = HTTPServer(('', 8080), httphandler)
+    print("Server started http://%s:%s" % ('', "8080"))
 
     try:
         webServer.serve_forever()
@@ -42,8 +41,7 @@ def startwebserver(port, image):
     print("Server stopped.")
 
 if __name__ == '__main__':
+    threading.Thread(target=startwebserver).start()
     a = asyncio.get_event_loop()
-    a.create_task(startwebserver(i["port"], i["output"]))
-    a.create_task(every(10, converttoimage)) # run every 10 seconds
+    a.create_task(every(20, converttoimage)) # run every 20 seconds
     a.run_forever()
-    print(":tefsrt")
