@@ -16,3 +16,31 @@ pip install -r requirements.txt --break-system-packages
 python3 main.py
 ```
 The web server is now reachable via http://yourip:8080/example.png -- change example.png to whatever output you set in your config.
+
+**REMEMBER TO CREATE config.json BEFORE RUNNING!**
+
+---
+For systemctl (auto start):
+```
+nano /etc/systemd/system/h265-to-snasphot.service
+```
+```
+[Unit]
+Description=h265-to-snapshot service
+After=network.target
+StartLimitIntervalSec=1
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+User=root -- CHANGE THIS!
+WorkingDirectory=/root/h265-to-snapshot -- THIS TOO!
+ExecStart=python3 main.py > /var/log/h265-to-snapshot.log
+
+[Install]
+WantedBy=multi-user.target
+```
+```
+sudo systemctl start h265-to-snapshot.service
+sudo systemctl enable h265-to-snapshot.service
+```
