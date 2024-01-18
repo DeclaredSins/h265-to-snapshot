@@ -1,5 +1,5 @@
 # h265-to-snapshot
-As the name implies, this project aims to convert h265 rtsp stream to snapshot. It was not created for converting video to snapshot but instead a rtsp stream. It converts video to snapshot and display on the web so you can easily use it with your camera.
+As the name implies, this project aims to convert h265 RTSP stream to snapshot. It was not created for converting video to snapshot but instead a RTSP stream. It converts video to snapshot and display on the web so you can easily use it with your camera.
 
 ## Using with Scrypted
 Scrypted does not support converting prebuffer video to snapshot with h265, all you will get is a gray snapshot but the video will work as expected when you enable transcoding. 
