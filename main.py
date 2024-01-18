@@ -16,11 +16,11 @@ def converttoimage():
     for i in data["camera"]:
         outfile = os.getcwd() + "/images" + '/' + i["output"]
         {
-        ffmpeg
-        .input(i["url"]) 
-        # ss convert from frame 50, syntax = frame number / fps
-        .output(outfile, vframes=1, ss=5)
-        .run_async(overwrite_output=True)
+            ffmpeg
+            .input(i["url"]) 
+            # ss convert from frame 50, syntax = frame number / fps
+            .output(outfile, vframes=1, ss=5)
+            .run_async(overwrite_output=True)
         }
 
 async def every(__seconds: float, func, *args):
